@@ -4,7 +4,7 @@ import runPromisesApp from './03-promises.js';
 
 import '../scss/main.scss';
 
-document.addEventListener('DOMContentLoaded',() => {
+document.addEventListener('DOMContentLoaded', () => {
   runColorSwitcherApp();
   runTimerApp();
   runPromisesApp();
