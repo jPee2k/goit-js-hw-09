@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const srcDir = fs.readdirSync(path.resolve(__dirname, 'src'));
 const multipleHtmlPlugins = srcDir.filter((file) => file.match(/\.html$/)).map((html) => {
@@ -60,6 +61,11 @@ module.exports = {
     ...multipleHtmlPlugins,
     new MiniCssExtractPlugin({
       filename: 'css/bundle.css',
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: 'src/media/sounds', to: 'media/sounds' },
+      ],
     }),
   ],
 };

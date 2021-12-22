@@ -1,0 +1,32 @@
+.timer {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .value {
+    font-size: 3em;
+    font-weight: 700;
+  }
+
+  [data-days] {
+    color: indianred;
+  }
+
+  [data-hours] {
+    color: orange;
+  }
+
+  [data-minutes] {
+    color: yellowgreen;
+  }
+
+  [data-seconds] {
+    color: green;
+  }
+}

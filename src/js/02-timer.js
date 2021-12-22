@@ -1,7 +1,9 @@
 import flatpickr from 'flatpickr';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import Timer from './Timer.js';
 
 import 'flatpickr/dist/flatpickr.min.css';
+import 'notiflix/dist/notiflix-3.2.2.min.css';
 
 const elements = {
   timerInput: document.querySelector('#datetime-picker'),
@@ -13,9 +15,6 @@ const elements = {
     seconds: document.querySelector('.timer [data-seconds]'),
   },
 };
-
-// TODO notify
-// TODO styles
 
 export default () => {
   if (!elements.timerInput) {
@@ -51,13 +50,14 @@ function onClose(selectedDates) {
     enableButton(elements.startButton);
   } else {
     enableInput(elements.timerInput);
-    alert('Please choose a date in the future');
+    Notify.failure('Please choose a date in the future');
   }
 }
 
 function onSuccess() {
   enableInput(elements.timerInput);
-  alert('Congrats');
+  Notify.success('Bemts, Time is up!');
+  new Audio('media/sounds/success.mp3').play();
 }
 
 function disableButton(button) {
@@ -69,9 +69,11 @@ function enableButton(button) {
 }
 
 function disableInput(input) {
+  input.setAttribute('disabled', 'true');
   input.style.pointerEvents = 'none';
 }
 
 function enableInput(input) {
+  input.removeAttribute('disabled');
   input.style.pointerEvents = 'auto';
 }
