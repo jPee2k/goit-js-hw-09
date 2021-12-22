@@ -6,6 +6,10 @@ export default () => {
     form: document.querySelector('.promise .form'),
   };
 
+  if (!elements.form) {
+    return;
+  }
+
   const promisesByTime = {
     setUpTimeout({ delay, step, amount } = {}) {
       this.delay = parseInt(delay, 10);
